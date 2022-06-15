@@ -231,14 +231,14 @@ class Imagedata(Dataset):
 def loadtraindata():
     transform=transforms.Compose([transforms.ToTensor])
     trainset=Imagedata("G:\\idea2_质量增强\\质量增强数据集\\trainDataSet\\input\\","G:\\idea2_质量增强\\质量增强数据集\\trainDataSet\\label\\",transform)
-    trainloader=torch.utils.data.DataLoader(trainset,batch_size=16,shuffle=True,drop_last = True)
+    trainloader=torch.utils.data.DataLoader(trainset,batch_size=16,shuffle=True,num_workers=8,drop_last = True)
     return trainloader
 
 def loadtestdata():
     transform = transforms.Compose([transforms.ToTensor()])
     trainset = Imagedata('G:\\idea2_质量增强\\质量增强数据集\\testDataSet\\input\\', 'G:\\idea2_质量增强\\质量增强数据集\\testDataSet\\label\\',transform)
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=16,
-                                              shuffle=True,drop_last = True)  # 对数据集分batch
+                                              shuffle=True,num_workers=8,drop_last = True)  # 对数据集分batch
     return trainloader
 def adjust_learning_rate(optimizer, epoch):
     """Sets the learning rate to the initial LR decayed by 10 every 10 epochs"""
